@@ -5,13 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clicker game</title>
-    <style>
-      body {
-        background-color: green;
-      }
-    </style>
+    <link rel="stylesheet" href="style-game.css" />
   </head>
   <body>
-    <h1>There will be game soon</h1>
+    <div class="wrapper">
+      <div class="game-block">
+        <div class="caption-bar">
+          <p class="caption-item"><span class="user-name">name</span></p>
+          <p class="caption-item">Score: <span class="user-score">0</span></p>
+          <p class="caption-item">Level: <span class="user-level">0</span></p>
+        </div>
+        <div class="congratulation"></div>
+        <img id="enemy" src="__cartoon_fish_06_red_idle.png" alt="png file" />
+      </div>
+    </div>
+    <script src="game.js"></script>
   </body>
 </html>

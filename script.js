@@ -8,7 +8,11 @@ function validateForm(formSelector) {
   };
   let validationEmailOption = {
     isEmail: (input) => input.getAttribute('type') === 'email',
-    isValid: (input) => input.value.match('@'),
+    isValid: (input) => {
+      //let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      let validRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return input.value.match(validRegex);
+    },
     errorMessage: 'Invalid email address*',
   };
 
