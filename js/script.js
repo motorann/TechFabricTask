@@ -1,3 +1,5 @@
+'use script';
+
 function validateForm(formSelector) {
   const formElement = document.querySelector(formSelector);
   const inputs = Array.from(formElement.querySelectorAll('input'));
@@ -52,6 +54,7 @@ function validateForm(formSelector) {
     });
 
     if (isFormValid) {
+      localStorage.setItem('name', formElement.querySelector('#name').value);
       window.location.href = './game.html';
       /*       window.location.href = '/path'; */
     }

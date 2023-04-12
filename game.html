@@ -5,20 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clicker game</title>
-    <link rel="stylesheet" href="style-game.css" />
+    <link rel="stylesheet" href="css/style-game.css" />
+    <script defer src="js/game.js"></script>
+    <!-- “< meta http-equiv=”Permissions-Policy” content=”interest-cohort=()”>” -->
   </head>
   <body>
     <div class="wrapper">
       <div class="game-block">
         <div class="caption-bar">
           <p class="caption-item"><span class="user-name">name</span></p>
-          <p class="caption-item">Score: <span class="user-score">0</span></p>
-          <p class="caption-item">Level: <span class="user-level">0</span></p>
+          <p class="caption-item">Score: <span class="user-score"></span></p>
+          <p class="caption-item">Level: <span class="user-level"></span></p>
+          <p class="caption-item">Hp: <span class="enemy-hp"></span></p>
         </div>
-        <div class="congratulation"></div>
-        <img id="enemy" src="fish.png" alt="png file" />
+        <div class="congratulation">hehe</div>
+        <div class="relative">
+          <img id="enemy" src="images/spritesheet.png" alt="png file" />
+        </div>
+        <!-- <img id="enemy" src="images/spritesheet.png" alt="png file" /> -->
+        <!--         <div class="clicker"></div> -->
+        <div class="modal-window hidden">
+          <h2>You win!</h2>
+          <p>You score: <span></span></p>
+          <!--  <p>Do you want to start again?</p> -->
+          <!--  <button class="modal-button btn-yes">Yes</button> -->
+          <button class="modal-button btn-no">No</button>
+        </div>
+        <!--         <div class="overlay hidden"></div> -->
       </div>
     </div>
-    <script src="game.js"></script>
   </body>
 </html>
