@@ -64,10 +64,11 @@ let gameScreen = document.querySelector('.game-block');
 */
 
 const gameOver = function (createNewGame, stateGame) {
-  const modalWindow = document.querySelector('.modal-window');
+  const modalWindow = document.querySelector('.active-window');
   // const btnYes = document.querySelector('.btn-yes');
-  const btnNo = document.querySelector('.btn-no');
+  const btnNo = document.querySelector('button');
   const enemy = document.querySelector('#enemy');
+  enemy.classList.add('hidden');
 
   modalWindow.classList.remove('hidden');
 
@@ -78,7 +79,7 @@ const gameOver = function (createNewGame, stateGame) {
   }); */
 
   btnNo.addEventListener('click', function () {
-    enemy.classList.add('hidden');
+    // enemy.classList.add('hidden');
     modalWindow.classList.add('hidden');
   });
 };
@@ -92,17 +93,51 @@ const updateAllScore = function (game) {
 
 const goToTheNextLevel = function (stateGame) {
   const enemy = document.querySelector('#enemy');
-  const congratulation = document.querySelector('.congratulation');
+
   const hp = document.querySelector('.enemy-hp');
   const level = document.querySelector('.user-level');
 
+  document.querySelector('.main').removeEventListener('click', makeClick);
+
   enemy.src = stateGame.currentEnemyImage;
+  enemy.addEventListener('load', function () {
+    document.querySelector('.main').addEventListener('click', makeClick);
+  });
   stateGame.currentLevelScore = 0;
   stateGame.currentLevel++;
   stateGame.requiredLevelScore = 3;
 
   hp.textContent = stateGame.requiredLevelScore;
-  congratulation.textContent = `You got ${stateGame.currentLevel} level`;
+  /*   const animateCongratulation = function () {
+    const congratulation = document.querySelector('.congratulation p');
+    congratulation.textContent = `You got ${stateGame.currentLevel} level`;
+    setTimeout(() => {
+      congratulation.textContent = '';
+    }, 3000);
+  }; */
+  /*  const animateCongratulation = function () {
+    const congratulation = document.querySelector('.congratulation');
+    congratulation.insertAdjacentHTML(
+      'afterbegin',
+      `<p>You reached ${stateGame.currentLevel} level<\p>`
+    );
+    console.log(congratulation);
+    setTimeout(() => {
+      congratulation.lastElementChild.remove();
+    }, 3000);
+  }; */
+
+  const animateCongratulation = function () {
+    const congratulation = document.querySelector('.next-level');
+    let message = document.createElement('p');
+    message.textContent = `You reached ${stateGame.currentLevel} level`;
+    congratulation.appendChild(message);
+    setTimeout(() => {
+      congratulation.removeChild(message);
+    }, 2000);
+  };
+  animateCongratulation();
+
   level.textContent = stateGame.currentLevel;
 };
 
@@ -116,7 +151,7 @@ const createNewGame = function (difficulty) {
     },
     set requiredLevelScore(value) {
       this._requiredLevelScore = this._requiredLevelScore
-        ? Math.floor(Math.random() * value) + this._requiredLevelScore
+        ? Math.floor(Math.random() * value + 3) + this._requiredLevelScore
         : value * 5;
     },
     get maxLevel() {
@@ -144,7 +179,7 @@ const createNewGame = function (difficulty) {
 
 let stateGame = createNewGame(1);
 
-document.querySelector('.game-block').addEventListener('click', function (e) {
+const makeClick = function (e) {
   if (e.target === document.querySelector('#enemy')) {
     // cursorClicker(e, true);
     updateAllScore(stateGame);
@@ -152,10 +187,13 @@ document.querySelector('.game-block').addEventListener('click', function (e) {
       if (stateGame.currentLevel + 1 > stateGame.maxLevel) {
         gameOver(createNewGame, stateGame);
         console.log('2', stateGame);
+      } else {
+        goToTheNextLevel(stateGame);
       }
-      goToTheNextLevel(stateGame);
     }
   } else {
     // cursorClicker(e, false);
   }
-});
+};
+
+document.querySelector('.main').addEventListener('click', makeClick);

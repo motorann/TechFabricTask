@@ -1,6 +1,6 @@
 'use script';
 
-function validateForm(formSelector) {
+/* function validateForm(formSelector) {
   const formElement = document.querySelector(formSelector);
   const inputs = Array.from(formElement.querySelectorAll('input'));
   let validationByRequiredOption = {
@@ -25,8 +25,8 @@ function validateForm(formSelector) {
 
     let isFormValid = true;
 
-    /* this.querySelectorAll('.form-txt').forEach((formElement) => {
-      const input = formElement.querySelector('input'); */
+    // this.querySelectorAll('.form-txt').forEach((formElement) => {
+     // const input = formElement.querySelector('input'); 
     inputs.forEach(function (input, index) {
       let isInputValid = true;
 
@@ -56,7 +56,65 @@ function validateForm(formSelector) {
     if (isFormValid) {
       localStorage.setItem('name', formElement.querySelector('#name').value);
       window.location.href = './game.html';
-      /*       window.location.href = '/path'; */
+       //    window.location.href = '/path'; 
+    }
+  });
+}
+
+validateForm('#form-account'); */
+
+function validateForm(formSelector) {
+  const formElement = document.querySelector(formSelector);
+  const inputs = Array.from(formElement.querySelectorAll('input'));
+  const errors = formElement.querySelectorAll('.form-text__error');
+  let validationByRequiredOption = {
+    attribute: 'required',
+    isValid: (input) => input.value.trim() !== '',
+    errorMessage: 'This field is required',
+  };
+  let validationEmailOption = {
+    isEmail: (input) => input.getAttribute('type') === 'email',
+    isValid: (input) => {
+      let validRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return input.value.match(validRegex);
+    },
+    errorMessage: 'Invalid email address',
+  };
+
+  formElement.setAttribute('novalidate', '');
+
+  formElement.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    let isFormValid = true;
+
+    inputs.forEach(function (input, index) {
+      let isInputValid = true;
+
+      if (
+        input.hasAttribute(validationByRequiredOption.attribute) &&
+        !validationByRequiredOption.isValid(input)
+      ) {
+        errors[index].textContent = validationByRequiredOption.errorMessage;
+        isInputValid = false;
+        isFormValid = false;
+      } else if (
+        validationEmailOption.isEmail(input) &&
+        !validationEmailOption.isValid(input)
+      ) {
+        errors[index].textContent = validationEmailOption.errorMessage;
+        isInputValid = false;
+        isFormValid = false;
+      }
+
+      if (isInputValid) {
+        errors[index].textContent = '';
+      }
+    });
+
+    if (isFormValid) {
+      localStorage.setItem('name', formElement.querySelector('#name').value);
+      window.location.href = 'game.html';
     }
   });
 }

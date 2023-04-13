@@ -1,0 +1,112 @@
+@import './general-styles.css';
+/* body {
+  margin: 0;
+  font-family: 'Karla', sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #101010;
+}
+
+.main {
+  width: 1100px;
+  height: 550px;
+  background-color: white;
+  position: relative;
+  border: solid 5px #c9945f;
+  outline: 5px solid #924d06;
+  overflow: hidden;
+}
+
+.active-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  box-shadow: 0 0 20px black;
+
+  background-color: rgba(0, 0, 0, 0.7);
+
+  border-radius: 20px;
+  width: 350px; 
+  padding: 30px;
+  text-align: center;
+
+  color: white;
+} */
+
+#form-account {
+  text-align: center;
+}
+
+.form-text {
+  margin: 3.5rem 0;
+  border-bottom: 2px solid;
+  position: relative;
+}
+
+.form-text > input {
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #33b55a;
+}
+
+.form-text > label {
+  position: absolute;
+  top: -20px;
+  left: 5px;
+  transition: 0.5s;
+}
+
+.form-text > input:placeholder-shown ~ label {
+  top: -20%;
+}
+
+.form-text > input:focus ~ label {
+  top: -20px;
+}
+
+/* button {
+  cursor: pointer;
+  width: 50%;
+  border-radius: 8px;
+  padding: 0.5rem 2rem;
+  color: white;
+  background: linear-gradient(180deg, transparent, black);
+  border: 2px #046c24 solid;
+  font-size: 1.15rem;
+}
+
+button:hover {
+  transform: scale(1.03);
+} */
+
+.form-text__error {
+  position: absolute;
+  color: #f55d45;
+  font-size: 1rem;
+  top: 35px;
+  left: 5px;
+}
+
+.active-window > p {
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}

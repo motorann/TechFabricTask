@@ -4,34 +4,68 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+    - favicon
+    -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+
     <title>Clicker Game</title>
-    <link rel="stylesheet" href="css/styles.css" />
+
+    <!--
+    - google font link
+    -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+    - custom css link
+     -->
+
+    <link rel="stylesheet" href="css/index-styles.css" />
+
+    <script defer src="js/script.js"></script>
   </head>
+
   <body>
-    <div class="main">
-      <div class="wrapper">
-        <div class="wrapper-form">
+    <div class="wrapper">
+      <!--
+        - main inner window 
+       -->
+      <div class="main">
+        <div class="active-window">
           <p>Create account</p>
-          <form action="game.html" id="form-account">
-            <div class="form-txt">
+          <!--
+          - form wiith validation and a redirection to the main game webpage 
+          -->
+          <form action="/" id="form-account">
+            <div class="form-text">
               <input id="name" type="text" placeholder=" " required />
               <label for="name">Name:</label>
-              <div class="error"></div>
+              <div class="form-text__error"></div>
             </div>
-            <div class="form-txt">
+            <div class="form-text">
               <input id="email" type="email" placeholder=" " required />
               <label for="email">Email: </label>
-              <div class="error"></div>
+              <div class="form-text__error"></div>
             </div>
 
-            <button type="submit">Create user</button>
+            <button type="submit">Play</button>
           </form>
         </div>
 
+        <!--
+         - background video in main window
+        -->
         <video src="videos/fire.mp4" autoplay muted loop></video>
       </div>
     </div>
-
-    <script src="js/script.js"></script>
   </body>
 </html>

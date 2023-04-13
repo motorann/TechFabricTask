@@ -5,33 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clicker game</title>
-    <link rel="stylesheet" href="css/style-game.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/game-styles.css" />
     <script defer src="js/game.js"></script>
-    <!-- “< meta http-equiv=”Permissions-Policy” content=”interest-cohort=()”>” -->
   </head>
   <body>
     <div class="wrapper">
-      <div class="game-block">
+      <div class="main">
         <div class="caption-bar">
-          <p class="caption-item"><span class="user-name">name</span></p>
+          <p class="caption-item">
+            <span class="user-name">name</span>
+          </p>
           <p class="caption-item">Score: <span class="user-score"></span></p>
           <p class="caption-item">Level: <span class="user-level"></span></p>
-          <p class="caption-item">Hp: <span class="enemy-hp"></span></p>
+          <p class="caption-item">HP: <span class="enemy-hp"></span></p>
         </div>
-        <div class="congratulation">hehe</div>
-        <div class="relative">
+        <div class="next-level"></div>
+        <div class="image-wrapper">
           <img id="enemy" src="images/spritesheet.png" alt="png file" />
         </div>
-        <!-- <img id="enemy" src="images/spritesheet.png" alt="png file" /> -->
-        <!--         <div class="clicker"></div> -->
-        <div class="modal-window hidden">
+
+        <div class="active-window hidden">
           <h2>You win!</h2>
-          <p>You score: <span></span></p>
-          <!--  <p>Do you want to start again?</p> -->
-          <!--  <button class="modal-button btn-yes">Yes</button> -->
-          <button class="modal-button btn-no">No</button>
+          <button>Ok</button>
         </div>
-        <!--         <div class="overlay hidden"></div> -->
       </div>
     </div>
   </body>
