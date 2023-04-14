@@ -125,8 +125,8 @@ const createNewGame = function (difficulty) {
  ******************/
 let stateGame = createNewGame(1);
 
-/* Event Listener on game block to furthest experimental feature with event propagation */
-document.querySelector('.main').addEventListener('click', function (e) {
+/* event handler */
+const makeClick = function (e) {
   if (e.target === document.querySelector('#enemy')) {
     // cursorClicker(e, true);
     updateAllScore(stateGame);
@@ -141,4 +141,7 @@ document.querySelector('.main').addEventListener('click', function (e) {
   } else {
     // cursorClicker(e, false);
   }
-});
+};
+
+/* Event Listener on game block to furthest experimental feature with event propagation */
+document.querySelector('.main').addEventListener('click', makeClick);
