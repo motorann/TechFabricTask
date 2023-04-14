@@ -1,122 +1,66 @@
 'use script';
 
-/* function validateForm(formSelector) {
-  const formElement = document.querySelector(formSelector);
-  const inputs = Array.from(formElement.querySelectorAll('input'));
-  let validationByRequiredOption = {
-    attribute: 'required',
-    isValid: (input) => input.value.trim() !== '',
-    errorMessage: 'This field is required*',
-  };
-  let validationEmailOption = {
-    isEmail: (input) => input.getAttribute('type') === 'email',
-    isValid: (input) => {
-      //let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      let validRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      return input.value.match(validRegex);
-    },
-    errorMessage: 'Invalid email address*',
-  };
+const formElement = document.querySelector('#form-account');
+const inputs = Array.from(formElement.querySelectorAll('input'));
 
-  formElement.setAttribute('novalidate', '');
+const validateFillInput = function (input) {
+  let isValid;
+  const error = input.parentElement.querySelector('.form-text__error');
 
-  formElement.addEventListener('submit', function (e) {
-    e.preventDefault();
+  if (input.hasAttribute('required') && input.value.trim() === '') {
+    error.textContent = 'This field is required';
+    isValid = false;
+  } else {
+    isValid = true;
+  }
 
-    let isFormValid = true;
+  return isValid;
+};
 
-    // this.querySelectorAll('.form-txt').forEach((formElement) => {
-     // const input = formElement.querySelector('input'); 
-    inputs.forEach(function (input, index) {
-      let isInputValid = true;
+const validateEmail = function (input) {
+  let isValid;
+  const validRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const error = input.parentElement.querySelector('.form-text__error');
 
-      if (
-        input.hasAttribute(validationByRequiredOption.attribute) &&
-        !validationByRequiredOption.isValid(input)
-      ) {
-        formElement.querySelectorAll('.error')[index].textContent =
-          validationByRequiredOption.errorMessage;
-        isInputValid = false;
-        isFormValid = false;
-      } else if (
-        validationEmailOption.isEmail(input) &&
-        !validationEmailOption.isValid(input)
-      ) {
-        formElement.querySelectorAll('.error')[index].textContent =
-          validationEmailOption.errorMessage;
-        isInputValid = false;
-        isFormValid = false;
-      }
+  if (
+    input.getAttribute('type') === 'email' &&
+    !input.value.match(validRegex)
+  ) {
+    error.textContent = 'Invalid email address';
+    isValid = false;
+  } else {
+    isValid = true;
+  }
 
-      if (isInputValid) {
-        formElement.querySelectorAll('.error')[index].textContent = '';
-      }
-    });
+  return isValid;
+};
 
-    if (isFormValid) {
-      localStorage.setItem('name', formElement.querySelector('#name').value);
-      window.location.href = './game.html';
-       //    window.location.href = '/path'; 
+// apply custom validate and remove default parameters
+formElement.setAttribute('novalidate', '');
+
+formElement.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  let isFormValid = true;
+
+  inputs.forEach(function (input) {
+    let isInputValid = true;
+    isInputValid = validateEmail(input);
+    isInputValid = isInputValid && validateFillInput(input);
+
+    // if the current input is completely valid, remove an error message
+    if (isInputValid) {
+      input.parentElement.querySelector('.form-text__error').textContent = '';
     }
+    // form is valid when both inputs are valid
+    isFormValid = isFormValid && isInputValid;
   });
-}
 
-validateForm('#form-account'); */
-
-function validateForm(formSelector) {
-  const formElement = document.querySelector(formSelector);
-  const inputs = Array.from(formElement.querySelectorAll('input'));
-  const errors = formElement.querySelectorAll('.form-text__error');
-  let validationByRequiredOption = {
-    attribute: 'required',
-    isValid: (input) => input.value.trim() !== '',
-    errorMessage: 'This field is required',
-  };
-  let validationEmailOption = {
-    isEmail: (input) => input.getAttribute('type') === 'email',
-    isValid: (input) => {
-      let validRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      return input.value.match(validRegex);
-    },
-    errorMessage: 'Invalid email address',
-  };
-
-  formElement.setAttribute('novalidate', '');
-
-  formElement.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    let isFormValid = true;
-
-    inputs.forEach(function (input, index) {
-      let isInputValid = true;
-
-      if (
-        input.hasAttribute(validationByRequiredOption.attribute) &&
-        !validationByRequiredOption.isValid(input)
-      ) {
-        errors[index].textContent = validationByRequiredOption.errorMessage;
-        isInputValid = false;
-        isFormValid = false;
-      } else if (
-        validationEmailOption.isEmail(input) &&
-        !validationEmailOption.isValid(input)
-      ) {
-        errors[index].textContent = validationEmailOption.errorMessage;
-        isInputValid = false;
-        isFormValid = false;
-      }
-
-      if (isInputValid) {
-        errors[index].textContent = '';
-      }
-    });
-
-    if (isFormValid) {
-      localStorage.setItem('name', formElement.querySelector('#name').value);
-      window.location.href = 'game.html';
-    }
-  });
-}
-
-validateForm('#form-account');
+  // if the form is valid,
+  // put a user name to local storage and
+  // redirect to game webpage
+  if (isFormValid) {
+    localStorage.setItem('name', formElement.querySelector('#name').value);
+    window.location.href = 'game.html';
+  }
+});

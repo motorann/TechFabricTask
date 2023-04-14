@@ -1,46 +1,45 @@
 @import './general-styles.css';
 
+/*-----------------------------------*\
+ #STYLE OF FORM ACCOUNT
+\*-----------------------------------*/
+
 :root {
+  /* for correct display enemy */
   --width: 120px;
-  /* #24100d background
-    #101010; background 
-    #C96D5F border
-    #500225 text
-    https://colorscheme.ru/#0661TuGikw0w0 - adress of color scheme
-    font-family: 'Karla', sans-serif;
-    */
 }
 
-/* body {
-  margin: 0;
-  font-family: 'Karla', sans-serif;
-  font-weight: 500;
-  font-size: 1.5rem;
+h2 {
+  margin-bottom: 50px;
+  font-weight: 800;
 }
 
-.wrapper {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  background-color: green;
-  overflow: hidden;
-  background: #101010;
-}
- */
+/* Insertion of background-image in a game screen */
 .main {
-  /* width: 1100px;
-  height: 550px;
-  background-color: white; */
-  background-image: url(../images/kekruslan.JPG);
+  background-image: url(../images/background-game.JPG);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  /*  position: relative;
-  border: solid 5px #c9945f;
-  outline: 5px solid #924d06; */
 }
+
+/* Display game state */
+.caption-bar {
+  max-width: 500px;
+  height: 80px;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  border-radius: 0 0 10px 10px;
+  background: rgb(var(--light-beige));
+  color: rgb(var(--violet));
+}
+
+.caption-item {
+  flex: 1 1 25%;
+  text-align: center;
+}
+
+/* Display enemy image and its animation */
 
 .image-wrapper {
   position: absolute;
@@ -49,6 +48,11 @@
   width: var(--width);
   overflow: hidden;
   user-select: none;
+}
+
+#enemy {
+  animation: run 1s steps(11) infinite;
+  height: 122px;
 }
 
 @keyframes run {
@@ -60,40 +64,17 @@
   }
 }
 
-#enemy {
-  animation: run 1s steps(11) infinite;
-  height: 122px;
-}
-
-.caption-bar {
-  max-width: 500px;
-  height: 80px;
-  display: flex;
-  margin: 0 auto;
-  color: white;
-  background-color: rgba(255, 255, 255, 0.3);
-  align-items: center;
-  border-radius: 0 0 10px 10px;
-  background: #c9945f;
-  color: #500225;
-}
-
-.caption-item {
-  flex: 1 1 25%;
-  text-align: center;
-}
-
+/* Display message about move to the next level  and its animation */
 .next-level {
   text-align: center;
   margin-top: 100px;
   user-select: none;
   font-size: 2rem;
-  color: #56b673;
-  text-shadow: 0 0 10px #56b673;
+  color: rgb(var(--light-green));
+  text-shadow: 0 0 10px rgb(var(--light-green));
 }
 
 .next-level p {
-  /* transform: scale(1.5); */
   position: absolute;
   animation: increaseAndFade 2s infinite;
   left: calc(50% - 140px);
@@ -121,43 +102,8 @@
   }
 }
 
+/* Active class for pop-up modal window about game over */
+
 .hidden {
   display: none;
 }
-
-/* .active-window {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-
-  text-align: center;
-
-  box-shadow: 0 0 20px black;
-
-  background-color: rgba(0, 0, 0, 0.7);
-
-  border-radius: 20px;
-  width: 350px; 
-  padding: 30px;
-
-  color: white;
-} */
-
-h2 {
-  margin-bottom: 50px;
-}
-
-/* .modal-button {
-  cursor: pointer;
-
-  width: 50%;
-  border-radius: 8px;
-  padding: 0.5rem 2rem;
-  color: white;
-  background: linear-gradient(180deg, transparent, black);
-  border: 2px #046c24 solid;
-  font-size: 1.15rem;
-}
- */

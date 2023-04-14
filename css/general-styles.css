@@ -1,3 +1,24 @@
+/*-----------------------------------*\
+ #VARIABLES
+\*-----------------------------------*/
+
+:root {
+  /* Colors RGB*/
+  --white: 255, 255, 255;
+  --black: 0, 0, 0;
+  --almost-black: 16, 16, 16;
+  --light-beige: 201, 148, 95;
+  --dark-beige: 146, 77, 6;
+  --light-green: 51, 181, 90;
+  --dark-green: 4, 108, 36;
+  --bright-orange: 245, 93, 69;
+  --violet: 80, 2, 37;
+}
+
+/*-----------------------------------*\
+ #DEFAULT
+\*-----------------------------------*/
+
 body {
   margin: 0;
   font-family: 'Karla', sans-serif;
@@ -5,6 +26,26 @@ body {
   font-size: 1.5rem;
 }
 
+button {
+  cursor: pointer;
+  width: 50%;
+  border-radius: 8px;
+  padding: 0.5rem 2rem;
+  color: rgb(var(--white));
+  background: linear-gradient(180deg, transparent, rgb(var(--black)));
+  border: 2px solid rgb(var(--dark-green));
+  font-size: 1.15rem;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+/*-----------------------------------*\
+ #MAIN STYLE
+\*-----------------------------------*/
+
+/* Centering of main block */
 .wrapper {
   display: flex;
   width: 100%;
@@ -12,49 +53,31 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: #101010;
+  background: rgb(var(--almost-black));
 }
 
+/* View of main block */
 .main {
   width: 1100px;
   height: 550px;
-  background-color: white;
   position: relative;
-  border: solid 5px #c9945f;
-  outline: 5px solid #924d06;
+  border: 5px solid rgb(var(--light-beige));
+  outline: 5px solid rgb(var(--dark-beige));
   overflow: hidden;
 }
 
+/* Centering of form block and game over block */
 .active-window {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-
-  box-shadow: 0 0 20px black;
-
-  background-color: rgba(0, 0, 0, 0.7);
-
+  box-shadow: 0 0 20px rgb(var(--black));
+  background-color: rgba(var(--black), 0.7);
   border-radius: 20px;
-  width: 350px; /* better in percent */
+  width: 350px;
   padding: 30px;
   text-align: center;
-
-  color: white;
-}
-
-button {
-  cursor: pointer;
-  width: 50%;
-  border-radius: 8px;
-  padding: 0.5rem 2rem;
-  color: white;
-  background: linear-gradient(180deg, transparent, black);
-  border: 2px #046c24 solid;
-  font-size: 1.15rem;
-}
-
-button:hover {
-  transform: scale(1.03);
+  color: rgb(var(--white));
 }
