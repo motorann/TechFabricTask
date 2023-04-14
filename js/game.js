@@ -52,12 +52,6 @@ const goToTheNextLevel = function (stateGame) {
   const hp = document.querySelector('.enemy-hp');
   const level = document.querySelector('.user-level');
 
-  /* remove all the animation from enemy forever when calling gotoTheNextLevel*/
-  if (!enemy.classList.contains('non-active')) {
-    enemy.parentElement.classList.remove('active-animation');
-    enemy.classList.add('non-active');
-  }
-
   /* if image will be weight we need to block click on the target*/
   document.querySelector('.main').removeEventListener('click', makeClick);
 
@@ -68,7 +62,14 @@ const goToTheNextLevel = function (stateGame) {
 
   /* load img */
   enemy.src = stateGame.currentEnemyImage;
+
   enemy.addEventListener('load', function () {
+    /* remove all the animation from enemy forever when calling gotoTheNextLevel*/
+    if (!enemy.classList.contains('non-active')) {
+      enemy.parentElement.classList.remove('active-animation');
+      enemy.classList.add('non-active');
+    }
+    /* unblock Event Listener */
     document.querySelector('.main').addEventListener('click', makeClick);
   });
 
