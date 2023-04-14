@@ -39,18 +39,33 @@ h2 {
   text-align: center;
 }
 
-/* Display enemy image and its animation */
+/* Display enemy image static */
 
 .image-wrapper {
+  position: absolute;
+  bottom: 30px;
+  width: 200px;
+  left: 50%;
+  transform: translate(-50%);
+  user-select: none;
+}
+
+#enemy.non-active {
+  width: 100%;
+}
+
+/* Display first enemy image and its animation*/
+.image-wrapper.active-animation {
   position: absolute;
   bottom: 30px;
   left: calc(50% - (var(--width) / 2));
   width: var(--width);
   overflow: hidden;
   user-select: none;
+  transform: translate(0);
 }
 
-#enemy {
+.active-animation #enemy {
   animation: run 1s steps(11) infinite;
   height: 122px;
 }
@@ -64,7 +79,7 @@ h2 {
   }
 }
 
-/* Display message about move to the next level  and its animation */
+/* Display message about move to the next level and its animation */
 .next-level {
   text-align: center;
   margin-top: 100px;
